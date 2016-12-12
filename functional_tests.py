@@ -1,7 +1,7 @@
 from selenium import webdriver
 import unittest
 from selenium.webdriver.common.keys import Keys
-
+import time
 class NewVisitorTest(unittest.TestCase):  #1
 
     def setUp(self):  #2
@@ -14,9 +14,9 @@ class NewVisitorTest(unittest.TestCase):  #1
     def test_can_start_a_list_and_retrieve_it_later(self):  #4
         # Edith has heard about a cool new online to-do app. She goes
         # to check out its homepage
-        print("Testing function call")
+        #print("Testing function call")
         self.browser.get('http://localhost:8000')
-        print("Testing function call2")
+        #print("Testing function call2")
         # She notices the page title and header mention to-do lists
         self.assertIn('To-Do', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
@@ -31,18 +31,21 @@ class NewVisitorTest(unittest.TestCase):  #1
 
         # She types "Buy peacock feathers" into a text box (Edith's hobby
         # is tying fly-fishing lures)
-        inputbox.send_keys('Buy peacock feathers')
+        inputbox.send_keys('Use peacock feathers to make fly')
 
         # When she hits enter, the page updates, and now the page lists
         # "1: Buy peacock feathers" as an item in a to-do list table
         inputbox.send_keys(Keys.ENTER)
+        #time.sleep(10)
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '1: Buy peacock feathers' for row in rows),
-            "New to-do item did not appear in table"
+        self.assertIn('1: Buy peacock feathers', [ row.text for row in rows ],
+        "New to-do item did not appear in table -- its text was:\n%s" % (
+            table.text,
         )
+        )
+        self.assertIn('2: Use peacock feathers to make fly' , [row.text for row in rows])
 
         # There is still a text box inviting her to add another item. She
         # enters "Use peacock feathers to make a fly" (Edith is very
