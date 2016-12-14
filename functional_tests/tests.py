@@ -2,15 +2,16 @@ from selenium import webdriver
 import unittest
 from selenium.webdriver.common.keys import Keys
 import time
-from django.test import LiveServerTestCase
+#from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
-class NewVisitorTest(LiveServerTestCase):  #1
+class NewVisitorTest(StaticLiveServerTestCase):  #1
 
     def setUp(self):  #2
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(3)
 
-    def tearDown(self):  #3
+    def tearDown(self):  #xx
         self.browser.quit()
 
     def check_for_row_in_list_table(self, row_text):
