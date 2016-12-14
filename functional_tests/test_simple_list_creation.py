@@ -5,7 +5,7 @@ from unittest import skip
 class NewVisitorTest(FunctionalTest):  #1
 
    
-	@skip
+	
 	def test_can_start_a_list_and_retrieve_it_later(self):  #4
 		# Edith has heard about a cool new online to-do app. She goes
 		# to check out its homepage
@@ -85,6 +85,6 @@ class NewVisitorTest(FunctionalTest):  #1
 		page_text = self.browser.find_element_by_tag_name('body').text
 		self.assertNotIn('Buy peacock feathers', page_text)
 		self.assertIn('Buy milk', page_text)
-		self.fail('Finish the test!')
+		#self.fail('Finish the test!')
 
 		# Satisfied, they both go back to sleep
