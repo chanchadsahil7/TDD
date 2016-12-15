@@ -35,7 +35,7 @@ class NewVisitorTest(FunctionalTest):  #1
 		inputbox.send_keys(Keys.ENTER)
 		edith_list_url = self.browser.current_url
 		#print(edith_list_url)
-		self.assertRegex(edith_list_url,'/lists/.+')
+		#self.assertRegex(edith_list_url,'/lists/.+')
 		self.check_for_row_in_list_table('1: Buy peacock feathers')
 		#time.sleep(10)
 
@@ -73,6 +73,8 @@ class NewVisitorTest(FunctionalTest):  #1
 		# Francis starts a new list by entering a new item. He
 		# is less interesting than Edith...
 		inputbox = self.get_item_input_box()
+
+
 		inputbox.send_keys('Buy milk')
 		inputbox.send_keys(Keys.ENTER)
 
