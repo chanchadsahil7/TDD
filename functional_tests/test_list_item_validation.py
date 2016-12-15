@@ -20,7 +20,7 @@ class ItemValidationTest(FunctionalTest):
 		self.check_for_row_in_list_table('1: Buy milk')
 
 		# Perversely, she now decides to submit a second blank list item
-		self.self.get_item_input_box().send_keys('\n')
+		self.get_item_input_box().send_keys('\n')
 
 		# She receives a similar warning on the list page
 		error = self.browser.find_element_by_css_selector('.has-error')
